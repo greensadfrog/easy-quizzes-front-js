@@ -9,14 +9,16 @@ const questionsAmountElement = document.getElementById('questions-amount');
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const questionsAmount = urlParams.has('amount') ? urlParams.get('amount') : 20
+const startIndex = urlParams.has('start') ? urlParams.get('start') : 1
+const lastIndex  = urlParams.has('end') ? urlParams.get('end') : 400
 
 
 let questions = []
 let currentQuestionIndex = 0
 let result = 0
 
-const getRandomQuestions = amount => {
-    fetch(`https://easy-quizzes-api.herokuapp.com/quiz/KHNU_PHD2022/random/${amount}`)
+const getRandomQuestions = (amount, start, end) => {
+    fetch(`http://127.0.0.1:8000/quiz/FMF_MEVm/random/${amount}/${start}/${end}`)
         .then((data) => data.json())
         .then((data) => {
             questions = data
@@ -33,7 +35,8 @@ nextButton.addEventListener('click', () => {
 
 
 function startQuiz() {
-    getRandomQuestions(questionsAmount)
+    getRandomQuestions(questionsAmount, startIndex, lastIndex)
+    result = 0
     currentQuestionIndex = 0
     currentQuestionElement.innerText = '1'
     questionsAmountElement.innerText = questionsAmount
@@ -111,4 +114,4 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
-getRandomQuestions(1)
+getRandomQuestions(1, 1, 1)
