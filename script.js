@@ -18,7 +18,7 @@ let currentQuestionIndex = 0
 let result = 0
 
 const getRandomQuestions = (amount, start, end) => {
-    fetch(`http://127.0.0.1:8000/quiz/FMF_MEVm/random/${amount}/${start}/${end}`)
+    fetch(`https://easy-quizzes-api.herokuapp.com/quiz/KHNU_PHD2022/random/${amount}/${start}/${end}`)
         .then((data) => data.json())
         .then((data) => {
             questions = data
