@@ -114,4 +114,4 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
-getRandomQuestions(1, 1, 1)
+getRandomQuestions(1, startIndex, lastIndex)
